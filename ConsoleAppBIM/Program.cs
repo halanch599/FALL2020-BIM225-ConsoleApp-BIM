@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,44 +10,116 @@ namespace ConsoleAppBIM
 {
     class Program
     {
-        static void DisplayList(List<int> list)
-        {
-            foreach (int x in list)
-            {
-                Console.WriteLine(x +  " ");
-            }
-        }
-        static void DisplayList(List<string> list)
-        {
-            foreach (var item in list)
-            {
-                Console.WriteLine(item.ToUpper());
-            }
-        }
-        static bool SearchByName(string name, List<string> list)
-        {
-            bool result = false;
-            foreach (var item in list)
-            {
-                if (item.ToLower().Contains(name.ToLower()))
-                {
-                    result = true;
-                    break;
-                }
-            }
-
-            return result;
-        }
-
+        
        
         static void Main(string[] args)
         {
+            // Week: 5 -2
 
-            List<string> list = new List<string> {"Ali Halid","Yasin Sahin","Anila Polani",
-                "Husain Haqqani", "Nisa Nur"
-            };
+            // Object Oriented Programming
+            //overloading: same name but different parameters
+            Student s1 = new Student(100,"Ehsan","Ali","Male");
+            s1.DisplayStudent();
+            //s1.studentID = 100;
+            //s1.firstName = "Ehsan";
+            //s1.lastName = "Ali";
+            //s1.gender = "Male";
 
-            DisplayList(list);
+            Student s2 = new Student(101,"Hande","Baladin","Female");
+            s2.DisplayStudent();
+            //s2.studentID = 101;
+            //s2.firstName = "Hande";
+            //s2.lastName = "Baladin";
+            //s2.gender = "Female";
+
+            //Console.WriteLine($"ID= {s1.studentID}, Name = {s1.firstName} {s1.lastName}," +
+            //    $" Gender = {s1.gender}");
+
+            //Console.WriteLine($"ID= {s2.studentID}, Name = {s2.firstName} {s2.lastName}," +
+            //    $" Gender = {s2.gender}");
+            // exception/error handling Try-Catch
+            // every try must have a catch
+            // ABC
+            //try
+            //{
+            //    // odev: research about File class's function
+            //    string path2 = @"F:\test-1.txt";
+            //    //string data = File.ReadAllText(path2);
+            //    string []data= File.ReadAllLines(path2);
+            //    foreach (string s in data)
+            //    {
+            //        Console.WriteLine(s);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Error in reading file.");
+            //}
+
+            //if (File.Exists(path2))
+            //{
+            //    File.Delete(path2);
+            //}
+            //StreamWriter writer = new StreamWriter(path2,false);
+
+            //try
+            //{
+
+            //    writer.WriteLine("Hello Computer Engineers.");
+            //    writer.WriteLine("Hello Software Engineers.");
+            //    writer.WriteLine("Hello IZU.");
+            //    writer.WriteLine("Welcome to Visual Programming.");
+            //    Console.WriteLine("Created Successfully.");
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+            //finally
+            //{
+            //    writer.Close();
+            //}
+
+            //string path = @"F:\test.txt";
+            //StreamReader reader = new StreamReader(path);
+            //try
+            //{
+            //    string str = reader.ReadToEnd();
+            //    Console.WriteLine(str);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+            //finally
+            //{
+            //    reader.Close();
+            //}
+
+            // bir try ile 1 ve birden fazla catch olabilir
+            //try
+            //{
+
+            //    int []ar =new  int[]{ 1,2,3};
+            //    //string str = "15xxx";
+            //    //int num = int.Parse(str);
+
+            //    Console.WriteLine(ar[5]);
+            //}
+            //catch(IndexOutOfRangeException ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Hata Oldu." + ex.Message);
+            //}
+
+            //List<string> list = new List<string> {"Ali Halid","Yasin Sahin","Anila Polani",
+            //    "Husain Haqqani", "Nisa Nur"
+            //};
+
+            //DisplayList(list);
             //Console.WriteLine(SearchByName("A", list));
             //Console.WriteLine(list.Count);
             //Console.WriteLine(list.Contains("Ali"));
@@ -288,5 +361,34 @@ namespace ConsoleAppBIM
             //Console.WriteLine("Welcome," + email);
             Console.ReadLine();
         }
+        //static void DisplayList(List<int> list)
+        //{
+        //    foreach (int x in list)
+        //    {
+        //        Console.WriteLine(x + " ");
+        //    }
+        //}
+        //static void DisplayList(List<string> list)
+        //{
+        //    foreach (var item in list)
+        //    {
+        //        Console.WriteLine(item.ToUpper());
+        //    }
+        //}
+        //static bool SearchByName(string name, List<string> list)
+        //{
+        //    bool result = false;
+        //    foreach (var item in list)
+        //    {
+        //        if (item.ToLower().Contains(name.ToLower()))
+        //        {
+        //            result = true;
+        //            break;
+        //        }
+        //    }
+
+        //    return result;
+        //}
+
     }
 }
