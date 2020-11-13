@@ -16,5 +16,13 @@ namespace ConsoleAppBIM.Model
             this.departmentID = departmentID;
             this.name = name;
         }
+        public void AddDepartment(Department d)
+        {
+
+        }
+        public void AddDepartment(int deptID,int name)
+        {
+
+        }
     }
 }

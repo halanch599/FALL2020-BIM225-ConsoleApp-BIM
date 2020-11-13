@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleAppBIM.Model;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.IO;
@@ -16,17 +17,28 @@ namespace ConsoleAppBIM
         {
             // Week: 5 -2
 
+            Student s = new Student(1,"Ali","hasan","Male","ali@izu","123",1,101,1200);
+            s.Display();
+
+            s.FirstName = "Muhammad Ali";
+            s.LastName = "Khan";
+            s.Display();
+            //Console.WriteLine(s.getFirstName());
+            //s.setFirstName("Muhammad Ali");
+            //Console.WriteLine(s.getFirstName());
+            //s.Display();
+
             // Object Oriented Programming
             //overloading: same name but different parameters
-            Student s1 = new Student(100,"Ehsan","Ali","Male");
-            s1.DisplayStudent();
+            //Student s1 = new Student();
+
+            //Employee e = new Employee();
+            //Dean d = new Dean();
             //s1.studentID = 100;
             //s1.firstName = "Ehsan";
             //s1.lastName = "Ali";
             //s1.gender = "Male";
 
-            Student s2 = new Student(101,"Hande","Baladin","Female");
-            s2.DisplayStudent();
             //s2.studentID = 101;
             //s2.firstName = "Hande";
             //s2.lastName = "Baladin";
