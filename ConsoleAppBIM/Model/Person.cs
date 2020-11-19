@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppBIM.Model
 {
-    class Person
+  public abstract class Person
     {
         private string firstName;
         private string lastName;
@@ -21,6 +21,74 @@ namespace ConsoleAppBIM.Model
         public string Email { get => email; set => email = value; }
         public string Password { get => password; set => password = value; }
         public int DepartmentID { get => departmentID; set => departmentID = value; }
+
+
+        // Methods
+        public abstract bool Login(string email, string password);
+        //{
+        //    try
+        //    {
+        //        bool valid = false;
+
+        //        if (email=="admin" && password=="123")
+        //        {
+        //            valid = true;
+        //        }
+        //        return valid;
+
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw new Exception("Error in login method.");
+        //    }
+        //}
+
+        public virtual void ViewNotification()
+        {
+            Console.WriteLine("Notification method person.");
+        }
+      public void Logout(Person p)
+        {
+            try
+            {
+                if (p is Employee)
+                {
+                    Console.WriteLine("Employee Logout Successfully.");
+
+                }
+                else
+                {
+                    if (p is Student)
+                    {
+                        Console.WriteLine("Student Logout Successfully.");
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Person Logout Successfully.");
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error in login method.");
+            }
+        }
+        public Person()
+        {
+           // Console.WriteLine("Person Constructor");
+        }
+
+        public Person(string firstName, string lastName, string gender, string email, 
+            string password, int departmentID)
+        {
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.Gender = gender;
+            this.Email = email;
+            this.Password = password;
+            this.DepartmentID = departmentID;
+        }
 
         //properties
 
@@ -64,20 +132,5 @@ namespace ConsoleAppBIM.Model
         //{
         //    firstName = fname;
         //}
-        public Person()
-        {
-           // Console.WriteLine("Person Constructor");
-        }
-
-        public Person(string firstName, string lastName, string gender, string email, 
-            string password, int departmentID)
-        {
-            this.FirstName = firstName;
-            this.LastName = lastName;
-            this.Gender = gender;
-            this.Email = email;
-            this.Password = password;
-            this.DepartmentID = departmentID;
-        }
     }
 }

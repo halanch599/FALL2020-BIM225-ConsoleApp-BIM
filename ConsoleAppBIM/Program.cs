@@ -9,20 +9,167 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppBIM
 {
+    //struct Point
+    //{
+    //   public int x;
+    //   public int y;
+
+    //    public Point(int x, int y)
+    //    {
+    //        this.x = x;
+    //        this.y = y;
+    //    }
+    //}
+
+    public interface IBank
+    {
+        // only method signature
+        void Deposit(int AccountNo, double Amount);
+        double Withdraw(int AccountNo, double Amount);
+        bool TransferAmount(int SenderAccountNo, int ReceiverAccountNo, double Amount);
+    }
+
+   public class Account
+    {
+        int accountNo;
+        string name;
+        double balance;
+
+        public Account(int accountNo, string name, double balance)
+        {
+            this.AccountNo = accountNo;
+            this.Name = name;
+            this.Balance = balance;
+        }
+
+        public int AccountNo { get => accountNo; set => accountNo = value; }
+        public string Name
+        {
+            get => name;
+
+            set {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new Exception("Name cannot be null.");
+                }
+                name = value; 
+            }
+        }
+        public double Balance { get => balance;
+
+            set
+            {
+                if (value<0)
+                {
+                    throw new Exception("Balance cannot be negative.");
+                }
+                balance = value;
+            }
+        }
+    }
+    class IsBank : IBank
+    {
+        List<Account> Customers;
+
+        public IsBank()
+        {
+            Customers = new List<Account>();
+        }
+        public void CreateAccount( string name, double balance = 0.0)
+        {
+            try
+            {
+                Account account = new Account(Customers.Count + 1, name, balance);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in creating account. \n" + ex.Message);
+            }
+        }
+        public void Deposit(int AccountNo, double Amount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TransferAmount(int SenderAccountNo, int ReceiverAccountNo, double Amount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public double Withdraw(int AccountNo, double Amount)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class AkBank : IBank
+    {
+        public void Deposit(int AccountNo, double Amount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TransferAmount(int SenderAccountNo, int ReceiverAccountNo, double Amount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public double Withdraw(int AccountNo, double Amount)
+        {
+            throw new NotImplementedException();
+        }
+    }
     class Program
     {
         
-       
+        
         static void Main(string[] args)
         {
+
+            try
+            {
+                IsBank isBank = new IsBank();
+                isBank.CreateAccount("Akhtar Jamil");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            //Student s = new Student();
+            //s.ViewNotification();
+
+            //Employee se = new Employee();
+            //se.ViewNotification();
+
+
+            //Point p;
+            //p.x = 10;
+            //p.y = 20;
+
+
+
+
             // Week: 5 -2
 
-            Student s = new Student(1,"Ali","hasan","Male","ali@izu","123",1,101,1200);
-            s.Display();
 
-            s.FirstName = "Muhammad Ali";
-            s.LastName = "Khan";
-            s.Display();
+            //Student s = new Student();
+            //Employee e = new Employee();
+
+            //Console.WriteLine(e.Login("admin", "123"));
+            //Console.WriteLine(s.Login("admin", "1234"));
+
+            //s.Logout(s);
+            // Polymorphism
+            //Person p1 = new Employee();
+            //Person p2 = new Student();
+
+
+            //Student s = new Student(1,"Ali","hasan","Male","ali@izu","123",1,101,1200);
+            //s.Display();
+
+            //s.FirstName = "Muhammad Ali";
+            //s.LastName = "Khan";
+            //s.Display();
             //Console.WriteLine(s.getFirstName());
             //s.setFirstName("Muhammad Ali");
             //Console.WriteLine(s.getFirstName());

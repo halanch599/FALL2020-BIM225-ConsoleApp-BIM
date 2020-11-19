@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppBIM.Model
 {
-    class Student:Person
+   public class Student:Person
     {
         int studentID;
         int programID;
@@ -16,6 +16,11 @@ namespace ConsoleAppBIM.Model
         public int ProgramID { get => programID; set => programID = value; }
         public float Fees { get => fees; set => fees = value; }
 
+        public override void ViewNotification()
+        {
+            Console.WriteLine("Student Notification method person.");
+            //base.ViewNotification();
+        }
         public Student()
         {
             //Console.WriteLine("Student Constructor");
@@ -34,6 +39,25 @@ namespace ConsoleAppBIM.Model
         public void Display()
         {
             Console.WriteLine($"ID = {StudentID}\t Name= {FirstName} {LastName}");
+        }
+
+        public override bool Login(string email, string password)
+        {
+            try
+            {
+                bool valid = false;
+
+                if (email == "std" && password == "123")
+                {
+                    valid = true;
+                }
+                return valid;
+
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error in login method.");
+            }
         }
     }
 }
