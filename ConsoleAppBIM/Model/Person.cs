@@ -14,7 +14,10 @@ namespace ConsoleAppBIM.Model
         private string email;
         private string password;
         private int departmentID;
+        private Address address;
 
+
+        public Address Address { get { return address; } set { address = value; } }
         public string FirstName { get { return firstName; } set => firstName = value; }
         public string LastName { get => lastName; set => lastName = value; }
         public string Gender { get => gender; set => gender = value; }

@@ -25,7 +25,7 @@ namespace ConsoleAppBIM
     {
         // only method signature
         void Deposit(int AccountNo, double Amount);
-        double Withdraw(int AccountNo, double Amount);
+        void Withdraw(int AccountNo, double Amount);
         bool TransferAmount(int SenderAccountNo, int ReceiverAccountNo, double Amount);
     }
 
@@ -47,12 +47,13 @@ namespace ConsoleAppBIM
         {
             get => name;
 
-            set {
+            set
+            {
                 if (string.IsNullOrEmpty(value))
                 {
                     throw new Exception("Name cannot be null.");
                 }
-                name = value; 
+                name = value;
             }
         }
         public double Balance { get => balance;
@@ -80,25 +81,126 @@ namespace ConsoleAppBIM
             try
             {
                 Account account = new Account(Customers.Count + 1, name, balance);
+                Customers.Add(account);
             }
             catch (Exception ex)
             {
                 throw new Exception("Error in creating account. \n" + ex.Message);
             }
         }
+
+        public void Display()
+        {
+            try
+            {
+                foreach (var cust in Customers)
+                {
+                    Console.WriteLine($"Acc. No. = {cust.AccountNo}, Name = {cust.Name}, Balance = {cust.Balance}");
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error in display method.");
+            }
+        }
+        public int SearchAccountByID(int AccountNo)
+        {
+            int Id = -1;
+            for (int i = 0; i < Customers.Count; i++)
+            {
+                if (Customers[i].AccountNo==AccountNo)
+                {
+                    Id = i;
+                    break;
+                }
+            }
+
+            return Id;
+        }
         public void Deposit(int AccountNo, double Amount)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var index = SearchAccountByID(AccountNo);
+                if (index==-1)
+                {
+                    throw new Exception("Account No is invalid.");
+                }
+
+                if (Amount<=0)
+                {
+                    throw new Exception("Amount cannot be zero or less.");
+                }
+
+                Customers[index].Balance += Amount;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in depositing amount \n" + ex.Message);
+            }
         }
 
         public bool TransferAmount(int SenderAccountNo, int ReceiverAccountNo, double Amount)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var indexSender = SearchAccountByID(SenderAccountNo);
+                var indexReceiver = SearchAccountByID(ReceiverAccountNo);
+
+                if (indexSender == -1 || indexReceiver==-1)
+                {
+                    throw new Exception("Sender / Receiver Account No is invalid.");
+                }
+
+                if (Amount <= 0)
+                {
+                    throw new Exception("Amount cannot be zero or less.");
+                }
+
+                if (Customers[indexSender].Balance < Amount)
+                {
+                    throw new Exception("Balace is not sufficient.");
+                }
+
+                Customers[indexSender].Balance -= Amount;
+                Customers[indexReceiver].Balance += Amount;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in depositing amount \n" + ex.Message);
+            }
         }
 
-        public double Withdraw(int AccountNo, double Amount)
+        public void Withdraw(int AccountNo, double Amount)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var index = SearchAccountByID(AccountNo);
+                if (index == -1)
+                {
+                    throw new Exception("Account No is invalid.");
+                }
+
+                if (Amount <= 0)
+                {
+                    throw new Exception("Amount cannot be zero or less.");
+                }
+
+                if (Customers[index].Balance<Amount )
+                {
+                    throw new Exception("Balace is not sufficient.");
+                }
+
+                Customers[index].Balance -= Amount;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in Withdraw amount \n" + ex.Message);
+            }
         }
     }
 
@@ -114,7 +216,7 @@ namespace ConsoleAppBIM
             throw new NotImplementedException();
         }
 
-        public double Withdraw(int AccountNo, double Amount)
+        public void Withdraw(int AccountNo, double Amount)
         {
             throw new NotImplementedException();
         }
@@ -128,8 +230,23 @@ namespace ConsoleAppBIM
 
             try
             {
-                IsBank isBank = new IsBank();
-                isBank.CreateAccount("Akhtar Jamil");
+
+                Student s = new Student();
+                s.Address = new Address("Istanbul", "12345", "Halkali 102", "Turkey");
+
+                //IsBank isBank = new IsBank();
+                //isBank.CreateAccount("Akhtar Jamil");
+                //isBank.CreateAccount("Ali",500);
+                //isBank.CreateAccount("Hasan", 200);
+
+                //isBank.Display();
+                ////isBank.Deposit(1, -100);
+                ////isBank.Withdraw(2, 200);
+                //if (isBank.TransferAmount(2, 3, 300))
+                //{
+                //    Console.WriteLine("Money transferred successfully.\n");
+                //}
+                //isBank.Display();
             }
             catch (Exception ex)
             {

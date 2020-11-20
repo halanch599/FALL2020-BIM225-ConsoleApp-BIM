@@ -33,11 +33,11 @@ namespace ConsoleAppBIM.Model
         public DateTime JoiningDate { get => joiningDate; set => joiningDate = value; }
         public float Tax { get => tax; set => tax = value; }
 
-        public override void ViewNotification()
-        {
-            Console.WriteLine("Employee Notification method person.");
-            //base.ViewNotification();
-        }
+        //public override void ViewNotification()
+        //{
+        //    Console.WriteLine("Employee Notification method person.");
+        //    //base.ViewNotification();
+        //}
         public override bool Login(string email, string password)
         {
             try
